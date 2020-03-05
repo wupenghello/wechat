@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-02-28 21:14:28
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-05 22:40:43
+* @Last Modified time: 2020-03-05 22:55:52
 *
 * 微信的服务器验证有效性
 */
@@ -58,11 +58,36 @@ module.exports = () => {
 			const jsData = await parseXMLAsync(xmlData);
 
 			//格式化数据
-			const messageData = formatMessage(jsData);
+			const message = formatMessage(jsData);
 
-			console.log(messageData);
 
-			res.end('');
+			// 简单的自动回复，回复文本内容
+			
+			let content = '你说啥';
+			// 判断用户发送的消息是否是文本消息
+			if( message.MsgType === 'text' ){
+				// 判断用户发送的消息内容具体是什么
+
+				if( message.Content === '1' ){
+					content = '大吉大利，今晚吃鸡';
+				}else if( message.Content === '2' ){
+					content = '落地成盒';
+				}else if( message.Content.match('吴鹏')){
+					// 半匹配
+					content = '吴鹏是最帅的';
+				}
+			}
+
+			// 最终回复的内容
+			let replayMessage = `<xml>
+			  <ToUserName><![CDATA[${message.FromUserName}]]></ToUserName>
+			  <FromUserName><![CDATA[${message.ToUserName}]]></FromUserName>
+			  <CreateTime>${Date.now()}</CreateTime>
+			  <MsgType><![CDATA[text]]></MsgType>
+			  <Content><![CDATA[${content}]]></Content>
+			</xml>`;
+
+			res.end(replayMessage);
 
 		}else{
 			res.end('error');
