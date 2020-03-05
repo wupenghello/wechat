@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-03-05 18:11:45
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-05 22:41:13
+* @Last Modified time: 2020-03-05 23:41:39
 *
 * 函数工具包
 */
@@ -25,7 +25,6 @@ module.exports = {
 				.on('data', data => {
 
 					// 当流式数据传递过来是，会触发当前事件，会将数据注入到回调函数中
-					// console.log(data);
 
 					// 读取的数据是 buffer ,需要将其转化成字符串拼串
 					xmlData += data.toString();
