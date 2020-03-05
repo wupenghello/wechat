@@ -2,20 +2,21 @@
 * @Author: WuPeng
 * @Date:   2020-02-28 21:14:28
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-02-28 21:23:33
+* @Last Modified time: 2020-03-05 22:40:43
 *
 * 微信的服务器验证有效性
 */
 
 
-//jshint esversion:6
+//jshint esversion:8
 
 const sha1 = require('sha1');
 const config = require('../config/index');
+const { getUserDataAsync , parseXMLAsync , formatMessage } = require('../utils/tool');
 
 module.exports = () => {
 
-	return (req,res,next) => {
+	return async (req,res,next) => {
 
 		const {signature,echostr,timestamp,nonce} = req.query;
 		const {token} = config;
@@ -28,17 +29,45 @@ module.exports = () => {
 		const str = arr.join('');
 		const sha1Str = sha1(str);
 
-		//3.加密完成就生成了一个 signature ，和微信发送过来的进行对比。
+		// GET 用来验证服务器的有效性
+		if( req.method === 'GET'){
+			//3.加密完成就生成了一个 signature ，和微信发送过来的进行对比。
+			if(sha1Str === signature){
+				//如果一样，就说明消息来自于微信服务器，返回 echostr 给微信服务器；
 
-		if(sha1Str === signature){
-			//如果一样，就说明消息来自于微信服务器，返回 echostr 给微信服务器；
+				res.send(echostr);
+			}else{
+				//如果不一样，说明不是微信服务器发送的消息，返回 error。
+				res.end('error:消息不是来自微信服务器');
+			}
+		}else if( req.method === 'POST' ){
 
-			console.log('echostr success');
-			res.send(echostr);
+			// POST 用来获取用户发送的消息
+			// 验证消息来自于微信服务器
+
+			if(sha1Str !== signature){
+				//走到这里说明消息不是来自微信服务器
+
+				res.send('error:消息不是来自微信服务器');
+
+			}
+
+			const xmlData = await getUserDataAsync(req);
+
+			// 得到的 xmlData 是一个 xml 数据，需要解析成一个 js 对象
+			const jsData = await parseXMLAsync(xmlData);
+
+			//格式化数据
+			const messageData = formatMessage(jsData);
+
+			console.log(messageData);
+
+			res.end('');
+
 		}else{
-			//如果不一样，说明不是微信服务器发送的消息，返回 error。
 			res.end('error');
 		}
+		
 
 		next();
 	};
