@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-02-28 21:14:28
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-06 19:36:17
+* @Last Modified time: 2020-03-06 20:49:57
 *
 * 微信的服务器验证有效性
 */
@@ -44,13 +44,6 @@ module.exports = () => {
 			else if( req.method === 'POST' ){
 				// POST 用来获取用户发送的消息
 				// 验证消息来自于微信服务器
-
-				if(sha1Str !== signature){
-					//走到这里说明消息不是来自微信服务器
-
-					res.send('error:消息不是来自微信服务器');
-
-				}
 
 				const xmlData = await getUserDataAsync(req);
 
