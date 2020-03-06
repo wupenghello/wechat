@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-02-28 21:52:19
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-06 21:53:03
+* @Last Modified time: 2020-03-06 22:28:11
 * 
 */
 
@@ -11,8 +11,6 @@
 
 //只需要引入 request-promise-native , 不需要引入 request
 const rp = require('request-promise-native');
-// 引入 fs 模块
-const { writeFile, readFile} = require('fs');
 
 //引入 config 模块
 const {appID , appsecret} = require('../config');
@@ -23,6 +21,8 @@ const menu = require('./menu');
 // 引入 api
 const api = require('../utils/api');
 
+// 引入工具函数
+const { readFileAsync, writhFileAsync} = require('../utils/tool'); 
 
 // 定义类，获取 access_token
 class Wechat {
@@ -70,23 +70,7 @@ class Wechat {
 	 * @return {[promise]} [ 成功没有返回值 ]
 	 */
 	saveAccessToken( access_token ){
-
-		// 将对象转化为 json 字符串
-		access_token = JSON.stringify(access_token);
-
-		// 将 access_token 保存为一个文件
-		return new Promise( (resolve , reject) => {
-
-			writeFile('./accessToken.txt', access_token , err => {
-
-				if(!err){
-					console.log('access_token 保存成功 ~');
-					resolve();
-				} else {
-					reject('saveAccessToken 方法出了问题，原因是： ' + err);
-				}
-			});
-		});
+		return writhFileAsync(access_token,'access_token.txt');
 	}
 
 	/**
@@ -95,22 +79,8 @@ class Wechat {
 	 */
 	readAccessToken(){
 
-		// 读取本地文件自的 access_token
-		return new Promise( (resolve , reject) => {
+		return readFileAsync('accessToken.txt');
 
-			readFile('./accessToken.txt', (err , data) => {
-
-				if(!err){
-					console.log('access_token 文件读取成功 ~');
-
-					// 将 json 字符串转化为 js 对象
-					data = JSON.parse(data);
-					resolve( data );
-				} else {
-					reject('readAccessToken 方法出了问题，原因是： ' + err);
-				}
-			});
-		});
 	}
 
 
@@ -317,22 +287,8 @@ class Wechat {
 	 */
 	saveTicket( ticket ){
 
-		// 将对象转化为 json 字符串
-		ticket = JSON.stringify(ticket);
+		return writhFileAsync( ticket , 'ticket.txt');
 
-		// 将 ticket 保存为一个文件
-		return new Promise( (resolve , reject) => {
-
-			writeFile('./ticket.txt', ticket , err => {
-
-				if(!err){
-					console.log('ticket 保存成功 ~');
-					resolve();
-				} else {
-					reject('saveTicket 方法出了问题，原因是： ' + err);
-				}
-			});
-		});
 	}
 
 
@@ -342,22 +298,8 @@ class Wechat {
 	 */
 	readTicket(){
 
-		// 读取本地文件自的 ticket
-		return new Promise( (resolve , reject) => {
+		return readFileAsync( 'ticket.txt' );
 
-			readFile('./ticket.txt', (err , data) => {
-
-				if(!err){
-					console.log('ticket 文件读取成功 ~');
-
-					// 将 json 字符串转化为 js 对象
-					data = JSON.parse(data);
-					resolve( data );
-				} else {
-					reject('readTicket 方法出了问题，原因是： ' + err);
-				}
-			});
-		});
 	}
 
 
@@ -466,4 +408,3 @@ class Wechat {
 	result = await w.createMenu(menu);
 
 })();
-
