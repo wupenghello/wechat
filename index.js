@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-02-27 21:59:48
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-06 18:47:31
+* @Last Modified time: 2020-03-06 19:36:48
 */
 
 /*
@@ -22,13 +22,18 @@ const app = express();
 app.use('/node_modules/',express.static('./node_modules'));
 app.use('/public/',express.static('./public'));
 
+// 使用模板引擎
 app.engine('html',require('express-art-template'));
+
+// 配置路由
+app.use(router);
 
 // 中间件的使用
 app.use(auth());
 
-// 配置路由
-app.use(router);
+app.use(function(req,res){
+	res.render('404.html');
+});
 
 // 启动服务
 app.listen('3000', () => console.log('runnging at 3000 ...'));
