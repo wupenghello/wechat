@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-03-05 23:34:33
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-06 00:11:08
+* @Last Modified time: 2020-03-06 17:29:08
 *
 * 处理用户发送的消息类型和内容，决定返回不同的内容给用户
 */
@@ -46,29 +46,29 @@ module.exports = message => {
 		options.msgType = 'voice';
 		options.mediaId = message.MediaId;
 
-		console.log( message.Recognition);
 	}
 	else if( 'location' === message.MsgType ){
 		// 用户发送位置消息
 
-		content = `维度：${message.Location_X} 经度：${message.Location_Y} 缩放大小：${message.Scale} 位置信息：${message}`;
+		content = `维度：${message.Location_X} 经度：${message.Location_Y} 缩放大小：${message.Scale} 位置信息：${message.Label}`;
 	}
 	else if( 'event' === message.MsgType ){
 		// 事件
+
+console.log(message);
 
 		if( 'subscribe' === message.Event ){
 			// 用户订阅事件
 			content = '欢迎您的关注~';
 		}
 		else if( 'LOCATION' === message.Event ){
-			content = `维度：${message.Latitude} 经度：${message.Longitude} 精度：${message.Percision}`;
+			content = `维度：${message.Latitude} 经度：${message.Longitude} 精度：${message.Precision}`;
+		}
+		else if( 'CLICK' === message.Event ){
+			content = `你点击了按钮 : ${message.EventKey}`;
 		}
 	}
-	else if( 'CLICK' === message.MsgType ){
-		// 用户发送位置消息
-
-		content = `你点击了按钮 : ${message.EventKey}`;
-	}
+	
 
 
 	options.content = content;

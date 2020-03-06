@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-02-28 21:52:19
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-02-28 23:31:58
+* @Last Modified time: 2020-03-06 17:30:11
 * 
 */
 
@@ -16,6 +16,9 @@ const { writeFile, readFile} = require('fs');
 
 //引入 config 模块
 const {appID , appsecret} = require('../config');
+
+// 引入 menu
+const menu = require('./menu');
 
 
 
@@ -214,63 +217,70 @@ class Wechat {
 	}
 
 
+	/**
+	 * [createMenu 创建自定义菜单]
+	 * @param  {[type]} menu [菜单的配置对象]
+	 * @return {[type]}      [description]
+	 */
+	createMenu(menu){
+		
+		return new Promise( async (resolve,reject) => {
+
+			try {
+				// 获取 access_token
+				const data = await this.fetchAccessToken();
+
+				// 定义请求地址
+				const url = `https://api.weixin.qq.com/cgi-bin/menu/create?access_token=${data.access_token}`;
+
+				// 发送请求
+				const result = await rp({method:'POST',url,json:true,body:menu});
+
+				resolve(result);
+			}
+			catch(e){
+				reject('createMenu 方法出了问题:' + e);
+			}
+
+		});		
+	}
+
+
+	/**
+	 * [deleteMent 删除自定义菜单]
+	 * @return {[type]} [description]
+	 */
+	deleteMenu(){
+
+		return new Promise( async (resolve,reject) => {
+
+			try {
+				// 获取 access_token
+				const data = await this.fetchAccessToken();
+
+				// 定义请求地址
+				const url = `https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=${data.access_token}`;
+
+				// 发送请求
+				const result = await rp({method:'GET',url,json:true});
+
+				resolve(result);
+			}catch(e){
+				reject('deleteMent 方法出了问题:' + e);
+			}
+
+		});
+	}
+
 }
 
 
-// 模拟测试
-// const w = new Wechat();
+( async () => {
+	const w = new Wechat();
 
-// w.fetchAccessToken()
-// .then( res => console.log(res));
+	let result = await w.deleteMenu();
 
-// new Promise( (resolve,reject) => {
+	result = await w.createMenu(menu);
 
-// 	w.readAccessToken()
-// 	.then( res => {
+})();
 
-
-// 		// 本地存在文件 判断是否过期
-// 		if( w.isValidAccessToken(res) ){
-
-// 			// 没有过期
-
-// 			resolve(res);
-
-// 		}else{
-// 			// 本地文件过期了，发送请求重新获取 access_token
-// 			w.getAccessToken()
-// 			.then( res => {
-
-// 				//获取之后就保存下来（本地文件），并将获取的 accessToken 暴露出去
-// 				w.saveAccessToken(res)
-// 				.then(() => {
-// 					resolve(res);
-// 				})
-// 				.catch( err => {
-// 					reject(err);
-// 				});
-// 			});
-// 		}
-
-// 	})
-// 	.catch( err => {
-
-// 		// 本地没有文件，就发送请求获取 accessToken 
-// 		w.getAccessToken()
-// 		.then( res => {
-
-// 			//获取之后就保存下来（本地文件），并将获取的 accessToken 暴露出去
-// 			w.saveAccessToken(res)
-// 			.then(() => {
-// 				resolve(res);
-// 			})
-// 			.catch( err => {
-// 				reject(err);
-// 			});
-// 		});
-// 	});
-
-// })
-// .then( res => {
-// 	console.log(res);
-// });

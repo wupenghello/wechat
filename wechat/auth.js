@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-02-28 21:14:28
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-06 00:09:05
+* @Last Modified time: 2020-03-06 16:39:23
 *
 * 微信的服务器验证有效性
 */
@@ -62,16 +62,12 @@ module.exports = () => {
 			//格式化数据
 			const message = formatMessage(jsData);
 
-			
-
 			// 简单的自动回复，回复文本内容
 
 			const options = replay(message);
 
 			// 最终回复的内容
 			let replayMessage = template(options);
-
-			console.log(replayMessage)
 
 			res.end(replayMessage);
 
