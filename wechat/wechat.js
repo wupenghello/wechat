@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-02-28 21:52:19
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-06 22:28:11
+* @Last Modified time: 2020-03-06 22:41:07
 * 
 */
 
@@ -397,14 +397,16 @@ class Wechat {
 }
 
 
-( async () => {
+// ( async () => {
 
-	// 运行这里可以刷新目录
+// 	// 运行这里可以刷新目录
 
-	const w = new Wechat();
+// 	const w = new Wechat();
 
-	let result = await w.deleteMenu();
+// 	let result = await w.deleteMenu();
 
-	result = await w.createMenu(menu);
+// 	result = await w.createMenu(menu);
 
-})();
+// })();
+
+module.exports = Wechat;
