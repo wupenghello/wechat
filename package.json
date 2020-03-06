@@ -5,7 +5,9 @@
   "author": "WuPeng <wupeng@flyfee.net>",
   "license": "MIT",
   "dependencies": {
+    "art-template": "^4.13.2",
     "express": "^4.17.1",
+    "express-art-template": "^1.0.1",
     "request": "^2.88.2",
     "request-promise-native": "^1.0.8",
     "sha1": "^1.1.1",
