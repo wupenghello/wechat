@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-03-05 23:34:33
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-06 17:29:08
+* @Last Modified time: 2020-03-06 20:17:35
 *
 * 处理用户发送的消息类型和内容，决定返回不同的内容给用户
 */
@@ -18,7 +18,7 @@ module.exports = message => {
 		msgType:'text',		//默认text
 	};
 	
-	let content = '你说啥';
+	let content = '你说啥啊';
 	// 判断用户发送的消息是否是文本消息
 	if( message.MsgType === 'text' ){
 		// 判断用户发送的消息内容具体是什么
@@ -38,7 +38,6 @@ module.exports = message => {
 		options.msgType = 'image';
 		options.mediaId = message.MediaId;
 
-		console.log( message.PicUrl);
 	}
 	else if( 'voice' === message.MsgType ){
 		// 用户发送语音消息
@@ -55,8 +54,6 @@ module.exports = message => {
 	else if( 'event' === message.MsgType ){
 		// 事件
 
-console.log(message);
-
 		if( 'subscribe' === message.Event ){
 			// 用户订阅事件
 			content = '欢迎您的关注~';
@@ -69,8 +66,6 @@ console.log(message);
 		}
 	}
 	
-
-
 	options.content = content;
 
 	return options;

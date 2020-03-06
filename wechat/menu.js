@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-03-06 16:55:24
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-06 17:29:25
+* @Last Modified time: 2020-03-06 20:20:07
 *
 * 自定义菜单
 */
@@ -12,7 +12,7 @@ module.exports =  {
      "button":[
      {	
           "type":"click",
-          "name":"今日歌曲",
+          "name":"今日1歌曲",
           "key":"今日歌曲"
       },
       {
