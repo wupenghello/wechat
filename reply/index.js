@@ -2,9 +2,10 @@
 * @Author: WuPeng
 * @Date:   2020-02-28 21:14:28
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-06 20:49:57
+* @Last Modified time: 2020-03-07 16:51:36
 *
 * 微信的服务器验证有效性
+* 回复用户信息
 */
 
 
@@ -14,7 +15,7 @@ const sha1 = require('sha1');
 const config = require('../config/index');
 const { getUserDataAsync , parseXMLAsync , formatMessage } = require('../utils/tool');
 const template = require('./template');
-const replay = require('./reply');
+const reply = require('./reply');
 
 module.exports = () => {
 	return async (req,res,next) => {
@@ -55,12 +56,12 @@ module.exports = () => {
 
 				// 简单的自动回复，回复文本内容
 
-				const options = replay(message);
+				const options = reply(message);
 
 				// 最终回复的内容
-				let replayMessage = template(options);
+				let replyMessage = template(options);
 
-				res.end(replayMessage);
+				res.end(replyMessage);
 			}
 			else
 			{

@@ -26,69 +26,11 @@
 	  	'startRecord',
 	  	'stopRecord',
 	  	'onMenuShareQQ',
+	  	'updateAppMessageShareData'
 	  ] // 必填，需要使用的JS接口列表
 	});
 
-	wx.ready(function(){
-	  // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
-
-
-	  // 验证接口是否可以调用
-	  wx.checkJsApi({
-		  jsApiList: [
-		  	'onMenuShareWeibo',
-		  	'startRecord',
-		  	'stopRecord',
-		  	'onMenuShareQQ',
-		  ], // 需要检测的JS接口列表，所有JS接口列表见附录2,
-		  success: function(res) {
-		  // 以键值对的形式返回，可用的api值true，不可用为false
-		  // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
-
-		  	console.log(res);
-		  }
-		});
-
-	  //语音识别的功能
-	  //
-	  //// 设置标志位，是否在录音中
-	  	var isRecord = false;
-	  $("#btn").tap(function(){
-
-	  	console.log(isRecord);
-
-	  	if( !isRecord ){
-	  		// 开始录音
-	  		wx.startRecord();
-	  		isRecord = true;
-	  	}else{
-	  		// 结束录音
-		  	wx.stopRecord({
-			  success: function (res) {
-
-			  	// 获取录音的ID
-			    var localId = res.localId;
-			 	
-			 	var url = 'https://api.douban.com/v2/movie/subject/30261964?callback=?&apikey=0df993c66c0c636e29ecbb5344252a4a';
-
-				$.getJSON(url,function(data){
-						console.log(data);
-				});
-
-				isRecord = false;
-			  }
-			});
-
-			
-
-			
-	  	}
-
-	  	
-
-
-	  	
-	  });
+	wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
 
 	});
 

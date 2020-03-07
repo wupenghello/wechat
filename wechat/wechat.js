@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-02-28 21:52:19
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-06 22:41:07
+* @Last Modified time: 2020-03-07 17:43:16
 * 
 */
 
@@ -202,6 +202,8 @@ class Wechat {
 
 				// 发送请求
 				const result = await rp({method:'POST',url,json:true,body:menu});
+
+				console.log('创建菜单成功');
 
 				resolve(result);
 			}
