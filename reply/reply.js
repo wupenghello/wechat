@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-03-05 23:34:33
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-06 20:17:35
+* @Last Modified time: 2020-03-08 14:47:15
 *
 * 处理用户发送的消息类型和内容，决定返回不同的内容给用户
 */
@@ -56,7 +56,12 @@ module.exports = message => {
 
 		if( 'subscribe' === message.Event ){
 			// 用户订阅事件
-			content = '欢迎您的关注~';
+			content = '欢迎您的关注~ \n' +
+                '回复 首页 能看到电影预告片页面 \n' +
+                '回复 热门 能看到最新最热门的电影 \n' +
+                '回复 文本 能查看指定的电影信息 \n' +
+                '回复 语音 能查看指定的电影信息 \n' +
+                '也可以点击下面的菜单按钮，来了解硅谷电影公众号' ;
 		}
 		else if( 'LOCATION' === message.Event ){
 			content = `维度：${message.Latitude} 经度：${message.Longitude} 精度：${message.Precision}`;

@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-02-27 22:09:16
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-07 17:41:40
+* @Last Modified time: 2020-03-08 14:39:23
 * @Descript:路由
 */
 
@@ -30,12 +30,12 @@ const router = express.Router();
 
 
 // 定义路由
-router.get('/index',(req,res) => {
-	res.render('index.html');
+router.get('/movie',(req,res) => {
+	res.render('movie.html');
 });
 
-router.get('/city', (req,res) => {
-	res.render('city.html');
+router.get('/search', (req,res) => {
+	res.render('search.html');
 });
 
 
