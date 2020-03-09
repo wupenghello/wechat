@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-03-08 17:54:31
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-09 13:21:53
+* @Last Modified time: 2020-03-09 17:57:06
 */
 
 
@@ -15,6 +15,8 @@ const db = require('../db');
 const theatersCrawler = require('./crawler/theatersCrawler');
 
 const saveTheaters = require('./save/saveTheaters');
+
+const Theaters = require('../model/Theaters');
 
 ( async () => {
 

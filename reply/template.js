@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-03-05 23:02:55
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-06 00:11:29
+* @Last Modified time: 2020-03-09 15:33:23
 *
 * 用来加工处理最终回复消息的模板（ xml 数据 ）
 */
@@ -42,7 +42,7 @@ module.exports = options => {
 	else if( 'news' === options.msgType ){
 		replyMessage += `<ArticleCount>${options.content.length}</ArticleCount><Articles>`;
 
-		option.content.forEach(item => {
+		options.content.forEach(item => {
 			replyMessage += `<item>
 		      <Title><![CDATA[${item.title}]]></Title>
 		      <Description><![CDATA[${item.description}]]></Description>

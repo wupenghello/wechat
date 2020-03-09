@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-02-28 21:14:28
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-07 16:51:36
+* @Last Modified time: 2020-03-09 16:49:02
 *
 * 微信的服务器验证有效性
 * 回复用户信息
@@ -56,7 +56,7 @@ module.exports = () => {
 
 				// 简单的自动回复，回复文本内容
 
-				const options = reply(message);
+				const options = await reply(message);
 
 				// 最终回复的内容
 				let replyMessage = template(options);

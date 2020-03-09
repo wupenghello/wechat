@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-02-28 21:12:02
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-09 13:10:18
+* @Last Modified time: 2020-03-09 16:28:23
 */
 
 module.exports = {
@@ -12,5 +12,5 @@ module.exports = {
 	appsecret:"baa3e4590f52bce9e8c30224ff975121",
 	token:"HxwdDjXE2Lukdle",
 
-	url:'http://f80ac220.ngrok.io',
+	url:'http://925f47e0.ngrok.io',
 };

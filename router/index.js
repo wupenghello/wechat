@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-02-27 22:09:16
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-08 14:39:23
+* @Last Modified time: 2020-03-09 18:42:39
 * @Descript:路由
 */
 
@@ -20,7 +20,8 @@ const reply = require('../reply');
 const {url} = require('../config/index');
 // 引入 wechat
 const Wechat = require('../wechat/wechat');
-
+// 引入数据库对象
+const Theaters = require('../model/Theaters');
 
 //创建实例对象
 const wechatApi = new Wechat();
@@ -36,6 +37,27 @@ router.get('/movie',(req,res) => {
 
 router.get('/search', (req,res) => {
 	res.render('search.html');
+});
+
+// 详情页路由
+router.get('/detail/:id', async (req,res) => {
+	
+	const {id} = req.params;
+
+	console.log(typeof id);
+
+	// 判断 id 值是否存在
+	if(!id){
+		res.end('error');
+	}
+
+	// 去数据库中找到对应的id
+	const data = await Theaters.findOne({doubanId:id},{_id:0,__v:0,createTime:0});
+
+	console.log(data);
+
+	res.render('detail.html',{data});
+
 });
 
 

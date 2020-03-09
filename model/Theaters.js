@@ -2,7 +2,7 @@
  * @Author: WuPeng
  * @Date:   2020-03-09 11:57:37
  * @Last Modified by:   WuPeng
- * @Last Modified time: 2020-03-09 12:19:13
+ * @Last Modified time: 2020-03-09 17:18:22
  */
 
 // jshint esversion:6
@@ -30,7 +30,7 @@ const theatersSchema = new Schema({
 	genre: [String],
 	summary: String,
 	releaseDate: String,
-	posterKey: String, //图片上传到七牛中，返回的key值
+	posterKey: String, //图片上传到服务器中，返回的key值
 	createTime: {
 		type: Date,
 		default: Date.now()
@@ -40,5 +40,6 @@ const theatersSchema = new Schema({
 
 //创建模型对象
 const Theaters = mongoose.model('Theaters', theatersSchema);
+
 //暴露出去
 module.exports = Theaters;

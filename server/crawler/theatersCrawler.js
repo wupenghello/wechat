@@ -2,7 +2,7 @@
  * @Author: WuPeng
  * @Date:   2020-03-08 16:26:00
  * @Last Modified by:   WuPeng
- * @Last Modified time: 2020-03-09 12:12:01
+ * @Last Modified time: 2020-03-09 18:01:13
  *
  * 爬虫信息
  */
@@ -46,6 +46,7 @@ module.exports = async () => {
 		const $list = $('#nowplaying>.mod-bd>.lists>.list-item');
 		//只取8条数据
 		for (let i = 0; i < 8; i++) {
+
 			const liDom = $list[i];
 			//电影标题
 			let title = $(liDom).data('title');
@@ -83,6 +84,7 @@ module.exports = async () => {
 
 	//遍历爬取到的8条数据
 	for (let i = 0; i < result.length; i++) {
+
 		//获取条目信息
 		let item = result[i];
 		//获取电影详情页面的网址

@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-02-27 21:59:48
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-07 17:09:53
+* @Last Modified time: 2020-03-09 18:03:42
 */
 
 /*
@@ -15,7 +15,8 @@ var express = require('express');
 
 // 引入路由模块
 const router = require('./router');
-
+// // 引入 db
+const db = require('./db');
 
 // 初始化
 const app = express();
