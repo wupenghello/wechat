@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-03-08 17:54:31
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-09 12:46:00
+* @Last Modified time: 2020-03-09 13:21:53
 */
 
 
@@ -22,9 +22,11 @@ const saveTheaters = require('./save/saveTheaters');
   	await db;
 
   	// 爬取数据
+  	console.log('正在爬取数据~~');
 	const data = await theatersCrawler();
 
 	// 保存到数据库
+	console.log('正在保存数据到数据库');
 	await saveTheaters(data);
 
 })();

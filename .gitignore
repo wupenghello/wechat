@@ -1,3 +1,5 @@
 build
 node_modules
 .idea
+utils/access_token.txt
+utils/ticket.txt

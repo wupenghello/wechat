@@ -2,13 +2,13 @@
 * @Author: WuPeng
 * @Date:   2020-03-09 12:20:07
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-09 12:35:51
+* @Last Modified time: 2020-03-09 13:23:01
 */
 
 // jshint esversion:8
 
 //引入Theaters
-const Theaters = require('../../module/Theaters');
+const Theaters = require('../../model/Theaters');
 
 module.exports = async data => {
   
@@ -27,9 +27,8 @@ module.exports = async data => {
       summary: item.summary,
       releaseDate: item.releaseDate,
     });
-  
-    console.log('数据保存成功');
-    
   }
+
+  console.log('数据保存成功');
   
 };

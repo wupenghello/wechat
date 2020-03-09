@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-03-05 23:34:33
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-08 14:47:15
+* @Last Modified time: 2020-03-09 13:14:23
 *
 * 处理用户发送的消息类型和内容，决定返回不同的内容给用户
 */
@@ -23,7 +23,7 @@ module.exports = message => {
 	if( message.MsgType === 'text' ){
 		// 判断用户发送的消息内容具体是什么
 
-		if( message.Content === '1' ){
+		if( message.Content === '热门' ){
 			content = '大吉大利，今晚吃鸡';
 		}else if( message.Content === '2' ){
 			content = '落地成盒';
