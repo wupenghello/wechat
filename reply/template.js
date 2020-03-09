@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-03-05 23:02:55
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-09 15:33:23
+* @Last Modified time: 2020-03-09 19:08:08
 *
 * 用来加工处理最终回复消息的模板（ xml 数据 ）
 */
@@ -57,7 +57,6 @@ module.exports = options => {
 
 
 	replyMessage += '</xml>';
-
 
 	// 最终返回给用户的 xml 
 	return replyMessage;

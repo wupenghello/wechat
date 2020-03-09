@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-03-05 23:34:33
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-09 18:26:41
+* @Last Modified time: 2020-03-09 19:13:04
 *
 * 处理用户发送的消息类型和内容，决定返回不同的内容给用户
 */
@@ -33,7 +33,7 @@ module.exports = async message => {
   	// 		await db;
 
 			// 回复用户热门消息数据
-			const data = await Theaters.find({}, {title: 1, summary: 1, doubanId: 1, _id: 0});
+			const data = await Theaters.find({}, {title: 1,image:1, summary: 1, doubanId: 1, _id: 0});
 
 			// 将回复内容初始化为空数组
 			content = [];

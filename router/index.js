@@ -2,7 +2,7 @@
 * @Author: WuPeng
 * @Date:   2020-02-27 22:09:16
 * @Last Modified by:   WuPeng
-* @Last Modified time: 2020-03-09 18:42:39
+* @Last Modified time: 2020-03-09 19:00:26
 * @Descript:路由
 */
 
@@ -44,8 +44,6 @@ router.get('/detail/:id', async (req,res) => {
 	
 	const {id} = req.params;
 
-	console.log(typeof id);
-
 	// 判断 id 值是否存在
 	if(!id){
 		res.end('error');
@@ -53,8 +51,6 @@ router.get('/detail/:id', async (req,res) => {
 
 	// 去数据库中找到对应的id
 	const data = await Theaters.findOne({doubanId:id},{_id:0,__v:0,createTime:0});
-
-	console.log(data);
 
 	res.render('detail.html',{data});
 
